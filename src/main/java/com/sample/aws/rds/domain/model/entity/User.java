@@ -113,7 +113,6 @@ public class User {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(userId, firstName, familyName, loginId, isLogin, ver, lastUpdatedAt);
     }
 
@@ -143,5 +142,4 @@ public class User {
     public void setMembershipsByUserId(Collection<Membership> membershipsByUserId) {
         this.membershipsByUserId = membershipsByUserId;
     }
-
 }

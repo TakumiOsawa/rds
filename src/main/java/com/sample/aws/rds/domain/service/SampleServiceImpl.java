@@ -9,17 +9,18 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.util.Arrays;
-import java.util.List;
+import java.util.Collections;
 
 @Transactional
 @Service
 public class SampleServiceImpl implements SampleService{
+    private final UserRepository userRepository;
+    private final GroupRepository groupRepository;
 
-    @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    GroupRepository groupRepository;
+    public SampleServiceImpl(@Autowired UserRepository userRepository, @Autowired GroupRepository groupRepository) {
+        this.userRepository = userRepository;
+        this.groupRepository = groupRepository;
+    }
 
     @Override
     public void init(){
@@ -37,18 +38,18 @@ public class SampleServiceImpl implements SampleService{
         init();
         Group group1 = Group.builder()
                 .groupId(0)
-                .groupName("mynavi-group1")
+                .groupName("sample-group1")
                 .ver(0)
                 .lastUpdatedAt(now())
                 .build();
         Group group2 = Group.builder()
                 .groupId(1)
-                .groupName("mynavi-group2")
+                .groupName("sample-group2")
                 .ver(0)
                 .lastUpdatedAt(now())
                 .build();
 
-        groupRepository.saveAll(Arrays.asList(new Group[]{group1, group2}));
+        groupRepository.saveAll(Arrays.asList(group1, group2));
 
         Address address1 = Address.builder()
                 .userId(0)
@@ -117,8 +118,8 @@ public class SampleServiceImpl implements SampleService{
                 .loginId("taro-account")
                 .isLogin(false)
                 .addressByUserId(address1)
-                .emailsByUserId(Arrays.asList(new Email[]{email1, email2}))
-                .membershipsByUserId(Arrays.asList(new Membership[]{membership1, membership2}))
+                .emailsByUserId(Arrays.asList(email1, email2))
+                .membershipsByUserId(Arrays.asList(membership1, membership2))
                 .ver(0)
                 .lastUpdatedAt(now())
                 .build();
@@ -129,14 +130,12 @@ public class SampleServiceImpl implements SampleService{
                 .loginId("hanako-account")
                 .isLogin(false)
                 .addressByUserId(address2)
-                .emailsByUserId(Arrays.asList(new Email[]{email3, email4}))
-                .membershipsByUserId(Arrays.asList(new Membership[]{membership3}))
+                .emailsByUserId(Arrays.asList(email3, email4))
+                .membershipsByUserId(Collections.singletonList(membership3))
                 .ver(0)
                 .lastUpdatedAt(now())
                 .build();
 
-        userRepository.saveAll(Arrays.asList(new User[]{user1, user2}));
-
+        userRepository.saveAll(Arrays.asList(user1, user2));
     }
-
 }

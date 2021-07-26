@@ -75,7 +75,6 @@ public class Group {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(groupId, groupName, ver, lastUpdatedAt);
     }
 

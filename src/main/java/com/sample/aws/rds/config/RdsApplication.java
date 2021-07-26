@@ -7,12 +7,10 @@ import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
 public class RdsApplication {
-
 	public static void main(String[] args) {
 		ApplicationContext applicationContext = SpringApplication.run(RdsApplication.class, args);
 		SampleService sampleService = applicationContext.getBean(SampleService.class);
 
 		sampleService.setData();
 	}
-
 }

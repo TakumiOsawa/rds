@@ -86,7 +86,6 @@ public class Email {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(userId, emailNo, email, ver, lastUpdatedAt);
     }
 

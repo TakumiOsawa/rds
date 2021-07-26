@@ -6,7 +6,6 @@ import org.springframework.cloud.aws.jdbc.config.annotation.EnableRdsInstance;
 @Configuration
 @EnableRdsInstance(
         dbInstanceIdentifier = "${rds.identifier}",
-        password ="${rds.password}",
-        readReplicaSupport = false)
+        password ="${rds.password}")
 public class RdsConfig {
 }

@@ -85,7 +85,6 @@ public class Address {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(userId, zipCode, address, ver, lastUpdatedAt);
     }
 

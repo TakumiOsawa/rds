@@ -75,7 +75,6 @@ public class Membership {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(userId, groupId, ver, lastUpdatedAt);
     }
 

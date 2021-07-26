@@ -16,14 +16,13 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages="org.debugroom.mynavi.sample.aws.rds.domain.repository")
+@EnableJpaRepositories(basePackages="com.sample.aws.rds.domain.repository")
 public class JpaConfig {
-
-    @Autowired
-    DataSource dataSource;
+    private DataSource dataSource;
 
     @Bean
-    public PlatformTransactionManager transactionManager() throws Exception{
+    public PlatformTransactionManager transactionManager(@Autowired DataSource dataSource) {
+        this.dataSource = dataSource;
         return new JpaTransactionManager();
     }
 
@@ -37,12 +36,11 @@ public class JpaConfig {
         properties.setProperty("hibernate.format_sql", "true");
 
         LocalContainerEntityManagerFactoryBean emfb = new LocalContainerEntityManagerFactoryBean();
-        emfb.setPackagesToScan("org.debugroom.mynavi.sample.aws.rds.domain.model.entity");
+        emfb.setPackagesToScan("com.sample.aws.rds.domain.model.entity");
         emfb.setJpaProperties(properties);
         emfb.setJpaVendorAdapter(adapter);
         emfb.setDataSource(dataSource);
 
         return emfb;
     }
-
 }
