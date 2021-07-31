@@ -1,0 +1,8 @@
+rds:
+  identifier: ${RDS_IDENTIFIER}
+  password: ${RDS_PASSWORD}
+
+cloud:
+  aws:
+    stack:
+      auto: false
