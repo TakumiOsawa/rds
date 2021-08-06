@@ -18,11 +18,14 @@ import java.util.Properties;
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages="com.sample.aws.rds.domain.repository")
 public class JpaConfig {
-    private DataSource dataSource;
+    private final DataSource dataSource;
+
+    public JpaConfig(@Autowired DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     @Bean
-    public PlatformTransactionManager transactionManager(@Autowired DataSource dataSource) {
-        this.dataSource = dataSource;
+    public PlatformTransactionManager transactionManager() {
         return new JpaTransactionManager();
     }
 
