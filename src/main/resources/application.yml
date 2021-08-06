@@ -2,8 +2,8 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/ma-osawa-database
-    username: ********
-    password: ********
+    username: *********
+    password: *********
 
 cloud:
   aws:
